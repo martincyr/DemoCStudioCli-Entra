@@ -13,8 +13,9 @@ namespace CsAgentClient
         private static async Task Main(string[] args)
         {
             await MainAsync();
+        }
 
-            static async Task MainAsync()
+        static async Task MainAsync()
             {
                 var configuration = new ConfigurationManager();
                 configuration
@@ -105,4 +106,3 @@ namespace CsAgentClient
             }
         }
     }
-}

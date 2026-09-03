@@ -7,11 +7,13 @@ namespace CsAgentClient
             CancellationToken cancellationToken)
         {
             Console.WriteLine($"[TRACING] HTTP {request.Method} {request.RequestUri}");
-
+            
             foreach (var header in request.Headers)
             {
                 Console.WriteLine($"[TRACING] {header.Key}: {string.Join(", ", header.Value)}");
             }
+
+            Console.WriteLine($"[TRACING] Request Body: {await request.Content.ReadAsStringAsync()}");
 
             if (request.Content is not null)
             {
@@ -24,6 +26,7 @@ namespace CsAgentClient
             var response = await base.SendAsync(request, cancellationToken);
 
             Console.WriteLine($"[TRACING] Response: {(int)response.StatusCode} {response.StatusCode}");
+            Console.WriteLine($"[TRACING] Response Body: {await response.Content.ReadAsStringAsync()}");
 
             return response;
         }
